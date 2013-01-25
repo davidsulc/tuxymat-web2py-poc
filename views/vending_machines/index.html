@@ -6,7 +6,7 @@
     {{for vending_machine in vending_machines:}}
       {{=TR(
         TD(vending_machine.serial_number),
-        TD()
+        TD( A('Show', _href=URL("show", args=vending_machine.id)) )
       )}}
     {{ pass }}
   </table>
