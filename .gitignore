@@ -1,3 +1,6 @@
+databases/**
+sessions/**
+
 **.bak
 **.log
 **.*~
