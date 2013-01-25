@@ -1,0 +1,15 @@
+{{extend 'layout.html'}}
+<h1>Vending Machines</h1>
+
+{{ if len(vending_machines) > 0: }}
+  <table>
+    {{for vending_machine in vending_machines:}}
+      {{=TR(
+        TD(vending_machine.serial_number),
+        TD()
+      )}}
+    {{ pass }}
+  </table>
+{{ else: }}
+  <p>No vending machines to display.</p>
+{{ pass }}
