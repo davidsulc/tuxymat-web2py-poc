@@ -1,4 +1,5 @@
 databases/**
+errors/**
 sessions/**
 
 **.bak
