@@ -4,10 +4,19 @@ def index():
   
 def show():
   vending_machine = db.vending_machine(request.args(0,cast=int)) or redirect(URL('index'))
-  #db.post.image_id.default = image.id
-  #form = SQLFORM(db.post)
-  #if form.process().accepted:
-      #response.flash = 'your comment is posted'
-  #comments = db(db.post.image_id==image.id).select()
-  #return dict(image=image, comments=comments, form=form)
   return dict(vending_machine=vending_machine)
+  
+def new():
+  form = SQLFORM(db.vending_machine)
+  if form.process().accepted:
+    session.flash = 'The vending machine was created'
+    redirect(URL('show', args=form.vars.id))
+  return dict(form=form)
+  
+def edit():
+  vending_machine = db.vending_machine(request.args(0,cast=int)) or redirect(URL('index'))
+  form = SQLFORM(db.vending_machine, vending_machine)
+  if form.process().accepted:
+    session.flash = 'The vending machine was updated'
+    redirect(URL('show', args=vending_machine.id))
+  return dict(vending_machine=vending_machine, form=form)
