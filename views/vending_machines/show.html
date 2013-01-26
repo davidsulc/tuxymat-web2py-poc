@@ -2,6 +2,8 @@
 <h1>Vending Machine {{= vending_machine.serial_number }}</h1>
 
 {{= A('Edit this vending machine', _href=URL("edit", args=vending_machine.id)) }}
+<br/>
+{{= A('Delete this vending machine', _href=URL("delete", args=vending_machine.id)) }}
 
 <p>
   <b>Serial number :</b>

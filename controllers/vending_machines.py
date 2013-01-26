@@ -20,3 +20,17 @@ def edit():
     session.flash = 'The vending machine was updated'
     redirect(URL('show', args=vending_machine.id))
   return dict(vending_machine=vending_machine, form=form)
+  
+def delete():
+  vending_machine = db.vending_machine(request.args(0,cast=int)) or redirect(URL('index'))
+  form = SQLFORM(db.vending_machine, vending_machine)
+  if form.process().accepted:
+    session.flash = 'The vending machine was updated'
+    redirect(URL('show', args=vending_machine.id))
+  return dict(vending_machine=vending_machine, form=form)
+
+def delete():
+  remove = db(db.vending_machine.id==request.args(0)).delete()
+  if remove:
+      session.flash = 'The vending machine was deleted'
+      redirect(URL('index'))
