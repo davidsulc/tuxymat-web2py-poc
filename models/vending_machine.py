@@ -7,3 +7,7 @@ db.define_table('vending_machine',
 db.vending_machine.requires = IS_NOT_EMPTY()
 db.vending_machine.serial_number.requires = IS_NOT_IN_DB(db, 'vending_machine.serial_number')
 db.vending_machine.purchase_price.requires = [IS_FLOAT_IN_RANGE(0.01, 9999.99)]
+
+from gluon.tools import Auth
+auth = Auth(db)
+auth.define_tables(username=True)
